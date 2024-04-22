@@ -5,3 +5,10 @@ DB_URL=jdbc:postgresql://localhost:5432/realstate
 
 #retry configuration
 MAX_RETRY=max_retries_attempts
+
+#gmail
+MAIL_USERNAME=
+MAIL_PASSWORD=
+
+#slack
+SLACK_WEBHOOK_URL=
