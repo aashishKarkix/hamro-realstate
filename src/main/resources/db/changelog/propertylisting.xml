@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="202404221317" author="realstate">
+        <sql dbms="postgresql">CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</sql>
+    </changeSet>
+
+    <changeSet id="202404221318" author="realstate">
+        <createTable tableName="property_listings">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="propertyId" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_propertylistings_properties"
+                             referencedTableName="properties" referencedColumnNames="id"/>
+            </column>
+            <column name="status" type="varchar(255)"/>
+            <column name="price" type="decimal"/>
+            <column name="listedDate" type="date"/>
+            <column name="transactionType" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

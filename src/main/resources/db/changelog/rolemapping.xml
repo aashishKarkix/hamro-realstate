@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="202404221317" author="realstate">
+        <sql dbms="postgresql">CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</sql>
+    </changeSet>
+
+    <changeSet id="202404221318" author="realstate">
+        <createTable tableName="user_role_mapping">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="userId" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_userrole_users"
+                             referencedTableName="users" referencedColumnNames="id"/>
+
+            </column>
+            <column name="roleId" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_userrole_roles"
+                             referencedTableName="roles" referencedColumnNames="id"/>
+
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

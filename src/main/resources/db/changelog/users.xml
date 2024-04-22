@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="202404221317" author="realstate">
+        <sql dbms="postgresql">CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</sql>
+    </changeSet>
+
+    <changeSet id="202404221318" author="realstate">
+        <createTable tableName="users">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="firstName" type="varchar(255)"/>
+            <column name="lastName" type="varchar(255)"/>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="hashedPassword" type="varchar(255)"/>
+            <column name="createdAt" type="timestamp"/>
+            <column name="updatedAt" type="timestamp"/>
+            <column name="deletedAt" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
