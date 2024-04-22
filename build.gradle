@@ -33,6 +33,13 @@ dependencies {
 
 	/*re-try dependencies*/
 	implementation 'org.springframework.retry:spring-retry:2.0.5'
+
+	/*mail and st template*/
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.antlr:ST4:4.3'
+
+	/*slack dependency*/
+	implementation 'com.slack.api:slack-api-client:1.39.0'
 }
 
 tasks.named('test') {
