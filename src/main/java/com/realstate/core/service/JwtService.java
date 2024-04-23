@@ -13,7 +13,8 @@ import java.util.function.Function;
 
 /**
  * Service class responsible for JWT token generation, validation, and extraction of
- * claims. Author: [Aashish Karki]
+ * claims.
+ * Author: [Aashish Karki]
  */
 @Service
 @Slf4j
@@ -45,7 +46,7 @@ public class JwtService {
         .claim("lastName", usersDto.getLastName())
         .setSubject(usersDto.getEmail())
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 5000))
+        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
         .signWith(getSignInKey())
         .compact();
   }
@@ -56,7 +57,7 @@ public class JwtService {
    * @param token The JWT token from which to extract the username.
    * @return The username (email) extracted from the token.
    */
-  private String extractUserName(String token) {
+  public String extractUserName(String token) {
     return extractClaim(token, Claims::getSubject);
   }
 
