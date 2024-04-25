@@ -63,4 +63,9 @@ public class UsersDto {
         .deletedAt(users.getDeletedAt())
         .build();
   }
+
+  public static UsersDto getTokenDetails(Users users) {
+    return UsersDto.builder().id(users.getId()).firstName(users.getFirstName())
+        .lastName(users.getLastName()).email(users.getEmail()).build();
+  }
 }
